@@ -337,8 +337,36 @@ $$
 
 Provide the **SPICE netlist** for simulation.
 
+**Lab Code:**
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 Vdd n1 0 0 sky130_fd_pr__nfet_01v8 w=5 l=2
+R1 n1 in 55
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+*simulation commands
+
+.op
+.dc Vdd 0 1.8 0.1 Vin 0 1.8 0.2
+
+.control
+
+run
+display
+setplot dc1
+.endc
+
+.end
+
 **Lab Output:**  
-![Day1_IdVds](images/day1_id_vds.png)
+<img width="1852" height="907" alt="Screenshot from 2025-08-19 21-35-39" src="https://github.com/user-attachments/assets/6435ad7b-2400-4970-8a94-f3b16501aa0a" />
 
 # Day 2 – Velocity Saturation & CMOS Inverter VTC
 
