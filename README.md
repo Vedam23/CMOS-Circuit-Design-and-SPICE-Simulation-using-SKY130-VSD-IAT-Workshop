@@ -338,6 +338,7 @@ $$
 Provide the **SPICE netlist** for simulation.
 
 **Lab Code to plot I_d - V_ds curve:**
+
 *Model Description
 .param temp=27
 
@@ -367,12 +368,29 @@ setplot dc1
 
 **Lab Output:**  
 <img width="1852" height="907" alt="Screenshot from 2025-08-19 21-35-39" src="https://github.com/user-attachments/assets/92a3d154-1147-4e71-a79f-0e4cafac9fcc" />
+
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 21-45-58" src="https://github.com/user-attachments/assets/c64a4db0-ca8e-4cf3-bf3f-93fd69be07d3" />
+
 To observe the value of Id, left click on the curve on the point to be observed.
 Now on the terminal window, some values of x0 and y0 should appear.
 The value of Id corresponds to the value of y0 in Amperes.
 
 # Day 2 – Velocity Saturation & CMOS Inverter VTC
+
+---
+
+**Modes of operation**
+
+The modes of operation for long channel devices (>250nm) are:
+- Cut-off region
+- Resistive region
+- Saturation region
+
+The modes of operation for short channel devices (<250nm) are:
+- Cut-off region
+- Resistive region
+- Velocity Saturation region
+- Saturation region
 
 ---
 
@@ -382,10 +400,9 @@ The value of Id corresponds to the value of y0 in Amperes.
 - Drain current is no longer proportional to Vgs – instead, it **flattens out**.  
 - Important for sub-micron processes like SKY130.  
 
-**Lab:**  
-- Run ID–Vgs simulations for different channel lengths.
-- Code for graph between Ids and Vds for short channel devices:
-- *Model Description
+**Lab Code for graph between Ids and Vds for short channel devices:**  
+
+*Model Description
 .param temp=27
 
 *Including sky130 library files
@@ -414,10 +431,13 @@ setplot dc1
 .end
 
 Output:
+
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-07-41" src="https://github.com/user-attachments/assets/b602b473-9fa0-43d9-ac97-998eef541560" />
+
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-07-35" src="https://github.com/user-attachments/assets/bb82033f-b9c0-48fe-b306-d720256324a1" />
 
-Code to calculate Threshold voltage for Id versus Vgs curve:
+**Lab Code to calculate Threshold voltage for Id versus Vgs curve:**
+
 *Model Description
 .param temp=27
 
@@ -445,51 +465,73 @@ setplot dc1
 
 .end
 
-Output:
+**Output:**
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-08-31" src="https://github.com/user-attachments/assets/b4ba7541-cc3c-4950-b882-faa934f49823" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-08-23" src="https://github.com/user-attachments/assets/2a7dc473-37e4-4ff4-ac6c-bd1146545ad0" />
- To calculate Threshold voltage:
-Code:
 
-- Observation:
+**Observation:**
+Threshold voltage is obtained by extending the linear part of the Id–Vgs plot to the x-axis; the intercept gives Vt.
 - For lower Vgs values -> quadratic behaviour, higher values -> linear behaviour.
+- Velocity Saturation causes device to saturate early
+- Point of saturation is εc (critical electric field)
+    --Vn(m/S) = linear for ε<=εc
+    --Vn(m/S) = constant for ε>=εc
 
 ---
 
+
 ### CMOS Inverter & Voltage Transfer Characteristic (VTC)
 
-- **CMOS inverter** = PMOS + NMOS connected complementarily.  
-- Output switches between Vdd and 0 depending on input.  
-- **VTC**: plot of Vout vs Vin.  
+### Transistor as a Switch
+- Acts as **open circuit** (infinite resistance) when |Vgs| < |Vt| → **OFF state**  
+- Acts as **closed circuit** (finite resistance) when |Vgs| > |Vt| → **ON state**  
 
-**Switching threshold (Vm):**  
-- Point where Vin = Vout.  
-- Controlled by relative W/L ratios of NMOS & PMOS.  
+---
 
-**Lab:**  
-- Generate VTC using DC sweep of Vin.  
-- Find switching threshold Vm.  
+### CMOS Inverter Operation
+
+#### Case 1: Vin = Vdd (High)
+- PMOS → OFF  
+- NMOS → ON  
+- Current flows from Vout to Vss → **Vout = 0V**  
+
+#### Case 2: Vin = 0V (Low)
+- PMOS → ON  
+- NMOS → OFF  
+- Current flows from Vdd to Vout → **Vout = Vdd**  
 
 ---
 
 # Day 3 – Switching Threshold & Transistor Sizing
 
 ---
+**For the given Spice Netlist:**
 
-### Effect of W/L Ratios
+![WhatsApp Image 2025-08-19 at 11 14 53 PM](https://github.com/user-attachments/assets/0713e12c-a1a7-4e7c-b5f0-8a957d0a45a8)
 
-- W/L ratio directly impacts **drive strength** of MOSFET.  
-- Larger W/L → higher current drive.  
-- In CMOS inverter, relative sizing of NMOS and PMOS sets the **switching threshold**.  
+**SPICE code is:**
 
-**Observations:**  
-- Increasing NMOS size → switching threshold shifts down (logic favors ‘0’).  
-- Increasing PMOS size → switching threshold shifts up (logic favors ‘1’).  
+***MODEL Description***
+***NETLIST Description***
+M1 out in vdd vdd pmos W=0.375u L=0.25u
+M2 out in  0   0  nmos W=0.375u L=0.25u
 
-**Lab:**  
-- Simulate inverters with different W/L ratios.
+cload out 0 10f
+
+Vdd vdd 0 2.5
+Vin  in 0 2.5
+
+***SIMULATION Commands***
+.op
+.dc Vin 0 2.5 0.05
+
+***.include tsmc_025um_model.mod***
+.LIB "tsmc_025um_model.mod" CMOS_MODELS
+.end
+
   
-Code to plot VTC (tt):
+**Code to plot VTC (tt):**
+
 *Model Description
 .param temp=27
 
@@ -520,12 +562,20 @@ display
 
 .end  
 
-Output:
+**Output:**
+
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-20-23" src="https://github.com/user-attachments/assets/99f17088-72f2-49e1-a6a8-c0cffc3eac80" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-22-11" src="https://github.com/user-attachments/assets/94c09826-2f90-448d-a048-dc432cc618d4" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-22-18" src="https://github.com/user-attachments/assets/f7b5d788-3aea-4d88-80dc-c3164f77e70f" />
 
-Code for Transient Analysis:
+To find the switching threshold (Vm):  
+- Zoom into the VTC curve where **Vout ≈ Vin**.  
+- Refine by zooming 2–3 times until the crossover point is clear.  
+- Click on the approximate point → values (x0, y0) appear in the terminal.  
+- At threshold, **x0 ≈ y0 = Vm**.  
+
+**Code for Transient Analysis:**
+
 *Model Description
 .param temp=27
 
@@ -553,16 +603,43 @@ run
 .end
 
 
-Output:
+**Output:**
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-28-06" src="https://github.com/user-attachments/assets/86a78c01-0cc9-4d20-bdbe-4e5681afc733" />
 
-To Calculate rising edge:
+**To Calculate rising edge delay:**
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-27-58" src="https://github.com/user-attachments/assets/c52d0c2a-b71f-4a0d-bdf0-6c9d51d63cc4" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-28-17" src="https://github.com/user-attachments/assets/41969100-ca17-4036-b313-54e1c6c0a296" />
+ 
+- Zoom around input fall & output rise near **Vdd/2**.  
+- Click output rising edge → get (x0, y0).  
+- Click input falling edge at same level.  
+- Delay = Δx (output – input).  
 
-To Calculate falling edge:
+**To Calculate falling edge delay:**
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-32-03" src="https://github.com/user-attachments/assets/08d81608-64bb-483b-b5a9-0bf0c1326660" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-32-14" src="https://github.com/user-attachments/assets/ae16d8fa-b451-4849-9b24-8a9fdd22e8a4" />
+
+- Zoom around input rise & output fall near **Vdd/2**.  
+- Click output falling edge → get (x0, y0).  
+- Click input rising edge at same level.  
+- Delay = Δx (output – input).  
+
+---
+
+**Static Behavior Evaluation - CMOS Inverter Robustness: Switching threshold**
+
+- **Robustness:** Input–output curve shape stays the same for all W/L ratios.  
+- **Key parameters:** Switching threshold (Vm), noise margin, supply & device variation.  
+
+**Switching Threshold (Vm):**  
+- Point where Vin = Vout.  
+- Found graphically using 45° line on VTC plot.  
+- Vm ≈ 0.98V for Wp/Lp = 1.5, Vm ≈ 1.2V for Wp/Lp = 3.75.  
+- At Vm, both NMOS & PMOS are ON.  
+- Condition: Vgs ≈ Vds, IdsP + IdsN = 0.  
+
+**Observation:**  
+- Increasing Wp/Lp → rise delay decreases (faster capacitor charging due to larger PMOS).  
 
 ---
 
@@ -570,26 +647,13 @@ To Calculate falling edge:
 
 ---
 
-### Noise Margin Basics
+- **Vil (Input Low Voltage):** Any input between 0 and Vil (≈ Vdd/4) is logic ‘0’.  
+- **Vih (Input High Voltage):** Any input between Vih (≈ 3Vdd/4) and Vdd is logic ‘1’.  
+- **Vol (Output Low Voltage):** Any output between 0 and Vol (< Vil) is logic ‘0’.  
+- **Voh (Output High Voltage):** Any output between Voh (> Vih) and Vdd is logic ‘1’.
 
-- **Noise Margin High (NMH):**  
-  \[
-  NMH = VOH - VIH
-  \]
+**Lab Code for Noise Margin:**  
 
-- **Noise Margin Low (NML):**  
-  \[
-  NML = VIL - VOL
-  \]
-
-Where:  
-- VOH = output high voltage  
-- VOL = output low voltage  
-- VIH = min input recognized as logic ‘1’  
-- VIL = max input recognized as logic ‘0’  
-
-**Lab:**  
-Code for Noise Margin:
 *Model Description
 .param temp=27
 
@@ -620,33 +684,40 @@ display
 
 .end
 
-Output:
+**Output:**
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-38-21" src="https://github.com/user-attachments/assets/c6b16568-9041-43f8-94e2-7fd094690e1b" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-39-36" src="https://github.com/user-attachments/assets/74cb2528-432e-4455-9378-3cb4abb0ea4d" />
 
+# Noise Margin Calculation
 
-- Extract values from VTC curve.  
-- Calculate NMH & NML.  
-- Observe trade-off with transistor sizing.  
+1. Open NGSpice plot.  
+2. Select top point where slope ≈ -1 → `x0 = 0.766667, y0 = 1.71351`  
+3. Select bottom point where slope ≈ -1 → `x1 = 0.977333, y1 = 0.110811`  
+4. Calculate:
+   - **NMh = Voh - Vih = y0 - x1 = 1.73571 - 0.971111 = 0.764599**  
+   - **NMl = Vil - Vol = x0 - y1 = 0.751111 - 0.12619 = 0.624921**
+
 
 ---
 
-# Day 5 – Robustness Analysis
+# Day 5 – CMOS Power supply and device variation robustness
 
 ---
 
-### Supply Voltage Variation
+# CMOS Supply Voltage Scaling
 
-- Lower Vdd → reduced noise margins, slower transitions.  
-- Higher Vdd → faster switching, more dynamic power consumption.  
+As technology scales from 250nm to ~20nm, supply voltage is reduced (e.g., from 1V → 0.7V).  
+CMOS inverters can operate at 0.5V with the following trade-offs:
 
-### Process / Device Variation
+**Advantages (0.5V supply):**
+- Gain increases by ~50%
+- Energy consumption reduces by ~90%
 
-- Variations in threshold voltage, mobility, oxide thickness affect inverter characteristics.  
-- Robust design must tolerate variations.  
+**Disadvantages (0.5V supply):**
+- Performance suffers: rising/falling edges may not fully charge/discharge the load capacitance
 
-**Lab:**  
-Code to calculate supply variation:
+**Lab Code to calculate supply variation:**  
+
 *Model Description
 .param temp=27
 
@@ -681,11 +752,23 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
 
 .end
 
-Output:
+**Output:**
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-44-14" src="https://github.com/user-attachments/assets/f5a0d5a4-a29f-44cb-8e01-5d9057422c9a" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-45-31" src="https://github.com/user-attachments/assets/ddb1c70b-7f19-4840-aed2-898ff090db8a" />
 
-Code for device variations:
+# CMOS Inverter Gain Calculation
+
+1. Select the curve for which gain is to be calculated (e.g., Vdd = 1.8V).  
+2. Click near the top of the curve where slope changes → `x0 = 0.78764, y0 = 1.68333`  
+3. Click near the bottom of the curve where slope changes → `x1 = 0.994382, y1 = 0.833333`  
+4. Calculate differences:  
+   - `Δy = y0 - y1 = 0.849997`  
+   - `Δx = x0 - x1 = -0.206742`  
+5. Gain: `g = |Δy / Δx| = |0.849997 / -0.206742| = 0.643255`
+
+
+**Lab Code for device variations:**
+
 *Model Description
 .param temp=27
 
@@ -716,17 +799,42 @@ display
 
 .end
 
-Output:
+**Output:**
+
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-49-28" src="https://github.com/user-attachments/assets/9e022d8c-ec4a-46f6-bacc-4e4af95e9d00" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-50-52" src="https://github.com/user-attachments/assets/3871b4b2-3d32-47fa-9b30-b5c1c69b5621" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-51-02" src="https://github.com/user-attachments/assets/ae11210f-5b7f-42a4-8e74-5132a5ae2459" />
 
+# CMOS Inverter Switching Threshold
 
-- Simulate inverter under:  
-  - Reduced Vdd  
-  - Increased Vdd  
-  - Modified device parameters  
-- Observe effect on VTC and noise margins.  
+- Due to a much larger PFET width compared to NFET, the VTC plot shifts right.  
+- To find the switching threshold (Vm):  
+  1. Zoom in where `Vin ≈ Vout`.  
+  2. Left-click the point where `Vin ≈ Vout`.  
+  3. Example point: `x0 = 0.990769, y0 = 0.966418`  
+- Since `x0 ≈ y0`, the **Switching Threshold Voltage** is:  
+  `Vm = 0.9 V`
 
----
+
+# Device Variation in CMOS Inverters
+
+Device variations arise from:
+
+1. **Etching Process Variation:**  
+   - Defines structures in the CMOS layout (width, height).  
+   - Directly impacts delay.  
+   - Layout elements:  
+     - **P-diffusion:** green  
+     - **N-diffusion:** yellow  
+     - **Poly-silicon (gate):** red, defines gate length (node: 20nm, 30nm, etc.)  
+     - **Metal layer:** blue  
+     - **Contacts:** black crosses  
+   - Fabrication involves chemicals, gases, water, etc., which can distort the ideal structure.
+
+2. **Oxide Thickness Variation:**  
+   - Variations in gate oxide thickness affect transistor characteristics.  
+   - Impacts threshold voltage, leakage current, and overall inverter performance.  
+   - Critical in scaled nodes where small thickness changes significantly affect device behavior.
+
+**Conclusion**
 
