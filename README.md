@@ -10,7 +10,7 @@ This repository contains my notes, lab exercises, and SPICE simulations from a 5
 ## 🛠️ Tools Used
 - **SKY130 PDK**
 - **ngspice**
-- Linux environment (for running simulations)
+- Oracle Linux environment (for running simulations)
 
 ---
 
