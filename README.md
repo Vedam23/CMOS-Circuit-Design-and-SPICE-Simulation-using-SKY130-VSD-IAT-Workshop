@@ -337,6 +337,7 @@ $$
 
 Provide the **SPICE netlist** for simulation.
 
+LAB:
 
 # Day 2 – Velocity Saturation & CMOS Inverter VTC
 
