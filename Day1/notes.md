@@ -86,9 +86,9 @@ PMOS has an inverted structure similar to NMOS.
   - Voltage = V(x).  
   - Effective Gate-to-channel voltage = Vgs – V(x).  
   - The amount of induced charge, Q–(x), is proportional to:  
-    \[
+    $$
     Q_i(x) = -C_{ox}\left[(V_{gs} - V(x)) - V_t\right]
-    \]  
+    $$  
 
 ---
 
