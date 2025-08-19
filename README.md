@@ -337,7 +337,8 @@ $$
 
 Provide the **SPICE netlist** for simulation.
 
-LAB:
+**Lab Output:**  
+![Day1_IdVds](images/day1_id_vds.png)
 
 # Day 2 – Velocity Saturation & CMOS Inverter VTC
 
