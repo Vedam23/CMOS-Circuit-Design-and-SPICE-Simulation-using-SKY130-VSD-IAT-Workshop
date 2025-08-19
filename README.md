@@ -33,7 +33,7 @@ This repository contains my notes, lab exercises, and SPICE simulations from a 5
 ### **L1-2: Introduction to basic elements in circuit design – NMOS**
 ### MOSFET Structure
 
-![WhatsApp Image 2025-08-19 at 11 14 53 PM](https://github.com/user-attachments/assets/2ef6419f-32ef-4b78-bd0a-9c885d2a80c9)
+![WhatsApp Image 2025-08-19 at 11 46 38 PM](https://github.com/user-attachments/assets/f0613255-3042-4658-8419-e9607e056194)
 
 - NMOS is a 4-terminal device, built on a **p-type substrate**.  
 - Two **SiO₂ isolation regions** are used to differentiate between two transistors.  
