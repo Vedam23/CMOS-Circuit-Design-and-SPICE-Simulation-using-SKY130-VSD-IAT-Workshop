@@ -166,4 +166,117 @@ PMOS has an inverted structure similar to NMOS.
   $$  
 
   which is linear in Vds.
-  
+
+## MOSFET Operation and SPICE Simulations
+
+### Assumptions:
+- Vgs = 0.5, 1, 1.5, 2, 2.5 V  
+- (Vgs − Vt) = 0.05, 0.55, 1.05, 1.55, 2.05 V  
+- Vds swept from 0 to 1.55 V  
+- Vt = 0.45 V  
+
+Since it is not feasible to calculate for each case manually, we can use **SPICE engine simulations**.
+
+---
+
+### Effect of Increasing Vds
+
+- Channel voltage = Vgs − Vds  
+- Example: Vgs = 1 V, Vds = 0.05 V, Vt = 0.45 V → surface inversion happens  
+
+Now, as we increase Vds from 0.05 → 0.95:  
+
+#### Case 1:  
+- Condition: Vds < (Vgs − Vt)  
+- Both source and drain edges of the channel are at higher potential.  
+- Channel is continuous.  
+
+#### Case 2:  
+- Example: Vgs = 1 V, Vds = 0.55 V, Vgs − Vt = 0.55 V  
+- Near source region → channel is already formed.  
+- Near drain region → channel is disappearing.  
+- Channel is tapered at drain side → **pinch-off starts**.  
+
+#### Case 3:  
+- Condition: Vds > (Vgs − Vt)  
+- No channel near drain → channel vanishes near drain side, but remains near source.  
+- This is the **saturation region**.  
+
+> Pinch-off condition:  
+> \[
+> V_{DS} \geq (V_{GS} - V_T)
+> \]
+
+---
+
+### Drain Current Equations
+
+- In **linear region**:
+\[
+I_D = k_n \left[(V_{GS} - V_T)V_{DS} - \frac{V_{DS}^2}{2}\right]
+\]
+
+- In **saturation** (replace \(V_{DS}\) by \(V_{GS}-V_T\)):
+\[
+I_D = \frac{k_n'}{2} \cdot \frac{W}{L} \cdot (V_{GS}-V_T)^2
+\]
+
+At first, it seems drain current is only a function of constants → like a perfect current source.  
+But in reality, **channel length modulation** occurs:  
+
+\[
+I_D = \frac{k_n'}{2} \cdot \frac{W}{L} \cdot (V_{GS}-V_T)^2 \cdot (1 + \lambda V_{DS})
+\]
+
+where  
+- \(\lambda\) = channel length modulation parameter.  
+- Current is not completely independent of Vds, but slightly dependent on λ.
+
+---
+
+### SPICE Simulations
+
+SPICE is an engine with **predefined models**.  
+- We provide:
+  1. **Model parameters** (technology constants)  
+     - \(V_{to}, \gamma, k_n', \lambda\)  
+     - Given in the **model file**
+  2. **SPICE netlist** (circuit description)
+
+Then SPICE software derives the response, which is used to calculate device characteristics (e.g., delays in digital cells).
+
+---
+
+### MOSFET Models
+
+Threshold voltage:
+\[
+V_T = V_{T0} + \gamma \left(\sqrt{| -2\phi_f + V_{SB}|} - \sqrt{| -2\phi_f|}\right)
+\]
+
+where:
+\[
+\gamma = \frac{\sqrt{2qN_A\varepsilon_{Si}}}{C_{ox}}, \quad
+\phi_f = -\phi_t \ln\left(\frac{N_A}{n_i}\right)
+\]
+
+---
+
+### Summary of Equations
+
+- **Linear region**:
+\[
+I_D = k_n \left[(V_{GS} - V_T)V_{DS} - \frac{V_{DS}^2}{2}\right]
+\]
+
+- **Saturation region**:
+\[
+I_D = \frac{k_n'}{2} \cdot \frac{W}{L} \cdot (V_{GS}-V_T)^2 (1 + \lambda V_{DS})
+\]
+
+---
+
+### Next Step
+
+Provide the **SPICE netlist** for simulation.
+
