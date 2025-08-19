@@ -34,16 +34,6 @@ This repository contains my notes, lab exercises, and SPICE simulations from a 5
 
 ---
 
-## 📂 Repository Structure
-- `Day1/` → MOSFET characteristics SPICE files.  
-- `Day2/` → CMOS inverter netlists + VTC results.  
-- `Day3/` → Switching threshold simulations.  
-- `Day4/` → Noise margin analysis.  
-- `Day5/` → Robustness analysis.  
-- `images/` → Plots and screenshots.
-
----
-
 ## 🛠️ Tools Used
 - **SKY130 PDK**
 - **ngspice**
