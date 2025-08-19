@@ -166,3 +166,4 @@ PMOS has an inverted structure similar to NMOS.
   $$  
 
   which is linear in Vds.
+  
