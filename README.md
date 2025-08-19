@@ -615,4 +615,98 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
 
 .end
 
-**Output:** <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-44-14" src="https://github.com/user-attachments/assets/f5a0d5a4-a29f-44cb-8e01-5d9057422c9a" /> <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-45-31" src="https://github.com/user-attachments/assets/ddb1c70b-7f19-4840-aed2-898ff090db8a" />
+**Output:** 
+
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-44-14" src="https://github.com/user-attachments/assets/f5a0d5a4-a29f-44cb-8e01-5d9057422c9a" /> 
+
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-45-31" src="https://github.com/user-attachments/assets/ddb1c70b-7f19-4840-aed2-898ff090db8a" />
+
+# CMOS Inverter Gain Calculation 
+1. Select the curve for which gain is to be calculated (e.g., Vdd = 1.8V).
+2. Click near the top of the curve where slope changes → x0 = 0.78764, y0 = 1.68333
+3. Click near the bottom of the curve where slope changes → x1 = 0.994382, y1 = 0.833333
+4. Calculate differences: - Δy = y0 - y1 = 0.849997 - Δx = x0 - x1 = -0.206742
+5. Gain: g = |Δy / Δx| = |0.849997 / -0.206742| = 0.643255
+
+**Lab Code for device variations:**
+
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=7 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.42 l=0.15
+
+Cload out 0 50fF
+
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+*simulation commands
+
+.op
+
+.dc Vin 0 1.8 0.01
+
+.control
+run
+setplot dc1
+display
+.endc
+
+.end
+
+**Output:** 
+
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-49-28" src="https://github.com/user-attachments/assets/9e022d8c-ec4a-46f6-bacc-4e4af95e9d00" /> 
+
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-50-52" src="https://github.com/user-attachments/assets/3871b4b2-3d32-47fa-9b30-b5c1c69b5621" />
+
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-51-02" src="https://github.com/user-attachments/assets/ae11210f-5b7f-42a4-8e74-5132a5ae2459" />
+
+# CMOS Inverter Switching Threshold 
+- Due to a much larger PFET width compared to NFET, the VTC plot shifts right.
+- To find the switching threshold (Vm):
+1. Zoom in where Vin ≈ Vout.
+2. Left-click the point where Vin ≈ Vout.
+3. Example point: x0 = 0.990769, y0 = 0.966418 - Since x0 ≈ y0, the **Switching Threshold Voltage** is: Vm = 0.9 V
+
+# Device Variation in CMOS Inverters Device variations arise from: 
+1. **Etching Process Variation:**
+- Defines structures in the CMOS layout (width, height).
+- Directly impacts delay.
+- Layout elements:
+- -**P-diffusion:** green
+- -**N-diffusion:** yellow
+- - **Poly-silicon (gate):** red, defines gate length (node: 20nm, 30nm, etc.)
+- - **Metal layer:** blue
+- - **Contacts:** black crosses
+- Fabrication involves chemicals, gases, water, etc., which can distort the ideal structure
+
+2. **Oxide Thickness Variation:**
+- Variations in gate oxide thickness affect transistor characteristics.
+- Impacts threshold voltage, leakage current, and overall inverter performance.
+- Critical in scaled nodes where small thickness changes significantly affect device behavior.
+
+# Conclusion
+
+The workshop provided hands-on experience with CMOS circuit design and SPICE simulation using SKY130 technology. Key takeaways include:
+
+- Understanding **MOSFET operation** in both long-channel and short-channel devices, including **velocity saturation** effects.  
+- Learning to extract **threshold voltage (Vt)** from Id–Vgs characteristics.  
+- Analyzing **CMOS inverter behavior**, including **Voltage Transfer Characteristics (VTC)**, switching thresholds (Vm), and noise margins.  
+- Observing the impact of **supply voltage scaling, and device variations** on inverter performance.  
+- Performing **transient analysis** to calculate **rising/falling edge delays** and inverter gain.  
+
+Overall, the workshop strengthened practical skills in **SPICE simulations, inverter characterization, and CMOS robustness analysis**, providing a strong foundation for VLSI circuit design and optimization in advanced technology nodes.
+
+
+## 📌 References 
+- Workshop material: https://www.vlsisystemdesign.com/cmos-circuit-design-spice-simulation-using-sky130-technology/
+- https://github.com/kunalg123/sky130CircuitDesignWorkshop
+
+THANK YOU
