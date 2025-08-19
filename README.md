@@ -484,9 +484,82 @@ Code:
 - Increasing PMOS size → switching threshold shifts up (logic favors ‘1’).  
 
 **Lab:**  
-- Simulate inverters with different W/L ratios.  
-- Plot VTC for each case.  
-- Compare switching thresholds.  
+- Simulate inverters with different W/L ratios.
+  
+Code to plot VTC (tt):
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
+
+Cload out 0 50fF
+
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+*simulation commands
+
+.op
+
+.dc Vin 0 1.8 0.01
+
+.control
+run
+setplot dc1
+display
+.endc
+
+.end  
+
+Output:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-20-23" src="https://github.com/user-attachments/assets/99f17088-72f2-49e1-a6a8-c0cffc3eac80" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-22-11" src="https://github.com/user-attachments/assets/94c09826-2f90-448d-a048-dc432cc618d4" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-22-18" src="https://github.com/user-attachments/assets/f7b5d788-3aea-4d88-80dc-c3164f77e70f" />
+
+Code for Transient Analysis:
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
+
+Cload out 0 50fF
+
+Vdd vdd 0 1.8V
+Vin in 0 PULSE(0V 1.8V 0 0.1ns 0.1ns 2ns 4ns)
+
+*simulation commands
+
+.tran 1n 10n
+
+.control
+run
+.endc
+
+.end
+
+
+Output:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-28-06" src="https://github.com/user-attachments/assets/86a78c01-0cc9-4d20-bdbe-4e5681afc733" />
+
+To Calculate rising edge:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-27-58" src="https://github.com/user-attachments/assets/c52d0c2a-b71f-4a0d-bdf0-6c9d51d63cc4" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-28-17" src="https://github.com/user-attachments/assets/41969100-ca17-4036-b313-54e1c6c0a296" />
+
+To Calculate falling edge:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-32-03" src="https://github.com/user-attachments/assets/08d81608-64bb-483b-b5a9-0bf0c1326660" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-32-14" src="https://github.com/user-attachments/assets/ae16d8fa-b451-4849-9b24-8a9fdd22e8a4" />
 
 ---
 
