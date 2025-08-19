@@ -586,6 +586,42 @@ Where:
 - VIL = max input recognized as logic ‘0’  
 
 **Lab:**  
+Code for Noise Margin:
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=1 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
+
+Cload out 0 50fF
+
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+*simulation commands
+
+.op
+
+.dc Vin 0 1.8 0.01
+
+.control
+run
+setplot dc1
+display
+.endc
+
+.end
+
+Output:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-38-21" src="https://github.com/user-attachments/assets/c6b16568-9041-43f8-94e2-7fd094690e1b" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-39-36" src="https://github.com/user-attachments/assets/74cb2528-432e-4455-9378-3cb4abb0ea4d" />
+
+
 - Extract values from VTC curve.  
 - Calculate NMH & NML.  
 - Observe trade-off with transistor sizing.  
@@ -607,6 +643,82 @@ Where:
 - Robust design must tolerate variations.  
 
 **Lab:**  
+Code to calculate supply variation:
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=1 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
+
+Cload out 0 50fF
+
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+.control
+
+let powersupply = 1.8
+alter Vdd = powersupply
+        let voltagesupplyvariation = 0
+        dowhile voltagesupplyvariation < 6
+        dc Vin 0 1.8 0.01
+        let powersupply = powersupply - 0.2
+        alter Vdd = powersupply
+        let voltagesupplyvariation = voltagesupplyvariation + 1
+      end
+
+plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.out vs in xlabel "input voltage(V)" ylabel "output voltage(V)" title "Inveter dc characteristics as a function of supply voltage"
+
+.endc
+
+.end
+
+Output:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-44-14" src="https://github.com/user-attachments/assets/f5a0d5a4-a29f-44cb-8e01-5d9057422c9a" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-45-31" src="https://github.com/user-attachments/assets/ddb1c70b-7f19-4840-aed2-898ff090db8a" />
+
+Code for device variations:
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=7 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.42 l=0.15
+
+Cload out 0 50fF
+
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+*simulation commands
+
+.op
+
+.dc Vin 0 1.8 0.01
+
+.control
+run
+setplot dc1
+display
+.endc
+
+.end
+
+Output:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-49-28" src="https://github.com/user-attachments/assets/9e022d8c-ec4a-46f6-bacc-4e4af95e9d00" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-50-52" src="https://github.com/user-attachments/assets/3871b4b2-3d32-47fa-9b30-b5c1c69b5621" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-51-02" src="https://github.com/user-attachments/assets/ae11210f-5b7f-42a4-8e74-5132a5ae2459" />
+
+
 - Simulate inverter under:  
   - Reduced Vdd  
   - Increased Vdd  
