@@ -53,3 +53,4 @@ This repository contains my notes, lab exercises, and SPICE simulations from a 5
 
 ## 📌 References
 - Workshop material [https://www.vlsisystemdesign.com/cmos-circuit-design-spice-simulation-using-sky130-technology/]
+- https://github.com/kunalg123/sky130CircuitDesignWorkshop
