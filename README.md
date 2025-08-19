@@ -20,7 +20,7 @@ This repository contains my notes, lab exercises, and SPICE simulations from a 5
 
 ## Module 1: Introduction to Circuit Design & SPICE Simulations
 
-### L0-1: Why do we need SPICE simulations?
+### Why do we need SPICE simulations?
 
 - Circuit design is about using PMOS and NMOS in required connections to get functionality.  
 - In SPICE, we feed input waveforms to the circuit and observe output characteristics.  
@@ -30,8 +30,7 @@ This repository contains my notes, lab exercises, and SPICE simulations from a 5
 - Cell delay tables used in STA and physical design come from SPICE simulations.  
 - Simulations verify if models are accurate and if STA values are correct.  
 
-### **L1-2: Introduction to basic elements in circuit design – NMOS**
-### MOSFET Structure
+### MOSFET Structure - NMOS
 
 ![WhatsApp Image 2025-08-19 at 11 46 38 PM](https://github.com/user-attachments/assets/f0613255-3042-4658-8419-e9607e056194)
 
