@@ -337,7 +337,7 @@ $$
 
 Provide the **SPICE netlist** for simulation.
 
-**Lab Code:**
+**Lab Code to plot I_d - V_ds curve:**
 *Model Description
 .param temp=27
 
@@ -368,6 +368,9 @@ setplot dc1
 **Lab Output:**  
 <img width="1852" height="907" alt="Screenshot from 2025-08-19 21-35-39" src="https://github.com/user-attachments/assets/92a3d154-1147-4e71-a79f-0e4cafac9fcc" />
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 21-45-58" src="https://github.com/user-attachments/assets/c64a4db0-ca8e-4cf3-bf3f-93fd69be07d3" />
+To observe the value of Id, left click on the curve on the point to be observed.
+Now on the terminal window, some values of x0 and y0 should appear.
+The value of Id corresponds to the value of y0 in Amperes.
 
 # Day 2 – Velocity Saturation & CMOS Inverter VTC
 
