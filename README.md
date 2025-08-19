@@ -380,10 +380,76 @@ setplot dc1
 - Important for sub-micron processes like SKY130.  
 
 **Lab:**  
-- Run ID–Vgs simulations for different channel lengths.  
-- Observe:  
-  - Long channel → quadratic increase.  
-  - Short channel → early saturation due to velocity saturation.  
+- Run ID–Vgs simulations for different channel lengths.
+- Code for graph between Ids and Vds for short channel devices:
+- *Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+
+XM1 Vdd n1 0 0 sky130_fd_pr__nfet_01v8 w=0.39 l=0.15
+R1 n1 in 55
+
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+*simulation commands
+
+.op
+.dc Vdd 0 1.8 0.1 Vin 0 1.8 0.2
+
+.control
+
+run
+display
+setplot dc1
+.endc
+
+.end
+
+Output:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-07-41" src="https://github.com/user-attachments/assets/b602b473-9fa0-43d9-ac97-998eef541560" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-07-35" src="https://github.com/user-attachments/assets/bb82033f-b9c0-48fe-b306-d720256324a1" />
+
+Code to calculate Threshold voltage for Id versus Vgs curve:
+*Model Description
+.param temp=27
+
+*Including sky130 library files
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+*Netlist Description
+XM1 Vdd n1 0 0 sky130_fd_pr__nfet_01v8 w=0.39 l=0.15
+R1 n1 in 55
+
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+*simulation commands
+
+.op
+.dc Vin 0 1.8 0.1
+
+.control
+
+run
+display
+setplot dc1
+.endc
+
+.end
+
+Output:
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-08-31" src="https://github.com/user-attachments/assets/b4ba7541-cc3c-4950-b882-faa934f49823" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-08-23" src="https://github.com/user-attachments/assets/2a7dc473-37e4-4ff4-ac6c-bd1146545ad0" />
+ To calculate Threshold voltage:
+Code:
+
+- Observation:
+- For lower Vgs values -> quadratic behaviour, higher values -> linear behaviour.
 
 ---
 
