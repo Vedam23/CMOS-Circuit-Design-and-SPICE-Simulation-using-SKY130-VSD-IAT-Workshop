@@ -336,3 +336,112 @@ $$
 ### Next Step
 
 Provide the **SPICE netlist** for simulation.
+
+
+# Day 2 – Velocity Saturation & CMOS Inverter VTC
+
+---
+
+### Velocity Saturation
+
+- In short-channel MOSFETs, carrier velocity **saturates** at high electric fields.  
+- Drain current is no longer proportional to Vgs – instead, it **flattens out**.  
+- Important for sub-micron processes like SKY130.  
+
+**Lab:**  
+- Run ID–Vgs simulations for different channel lengths.  
+- Observe:  
+  - Long channel → quadratic increase.  
+  - Short channel → early saturation due to velocity saturation.  
+
+---
+
+### CMOS Inverter & Voltage Transfer Characteristic (VTC)
+
+- **CMOS inverter** = PMOS + NMOS connected complementarily.  
+- Output switches between Vdd and 0 depending on input.  
+- **VTC**: plot of Vout vs Vin.  
+
+**Switching threshold (Vm):**  
+- Point where Vin = Vout.  
+- Controlled by relative W/L ratios of NMOS & PMOS.  
+
+**Lab:**  
+- Generate VTC using DC sweep of Vin.  
+- Find switching threshold Vm.  
+
+---
+
+# Day 3 – Switching Threshold & Transistor Sizing
+
+---
+
+### Effect of W/L Ratios
+
+- W/L ratio directly impacts **drive strength** of MOSFET.  
+- Larger W/L → higher current drive.  
+- In CMOS inverter, relative sizing of NMOS and PMOS sets the **switching threshold**.  
+
+**Observations:**  
+- Increasing NMOS size → switching threshold shifts down (logic favors ‘0’).  
+- Increasing PMOS size → switching threshold shifts up (logic favors ‘1’).  
+
+**Lab:**  
+- Simulate inverters with different W/L ratios.  
+- Plot VTC for each case.  
+- Compare switching thresholds.  
+
+---
+
+# Day 4 – Noise Margins
+
+---
+
+### Noise Margin Basics
+
+- **Noise Margin High (NMH):**  
+  \[
+  NMH = VOH - VIH
+  \]
+
+- **Noise Margin Low (NML):**  
+  \[
+  NML = VIL - VOL
+  \]
+
+Where:  
+- VOH = output high voltage  
+- VOL = output low voltage  
+- VIH = min input recognized as logic ‘1’  
+- VIL = max input recognized as logic ‘0’  
+
+**Lab:**  
+- Extract values from VTC curve.  
+- Calculate NMH & NML.  
+- Observe trade-off with transistor sizing.  
+
+---
+
+# Day 5 – Robustness Analysis
+
+---
+
+### Supply Voltage Variation
+
+- Lower Vdd → reduced noise margins, slower transitions.  
+- Higher Vdd → faster switching, more dynamic power consumption.  
+
+### Process / Device Variation
+
+- Variations in threshold voltage, mobility, oxide thickness affect inverter characteristics.  
+- Robust design must tolerate variations.  
+
+**Lab:**  
+- Simulate inverter under:  
+  - Reduced Vdd  
+  - Increased Vdd  
+  - Modified device parameters  
+- Observe effect on VTC and noise margins.  
+
+---
+
