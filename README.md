@@ -301,9 +301,7 @@ $$
 
 ---
 
-### Next Step
-
-Provide the **SPICE netlist** for simulation.
+Next Step is to provide the **SPICE netlist** for simulation.
 
 **Lab Code to plot I_d - V_ds curve:**
 
