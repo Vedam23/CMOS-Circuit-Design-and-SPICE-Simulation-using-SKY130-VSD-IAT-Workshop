@@ -86,21 +86,28 @@ PMOS has an inverted structure similar to NMOS.
   - Voltage = V(x).  
   - Effective Gate-to-channel voltage = Vgs – V(x).  
   - The amount of induced charge, Q–(x), is proportional to:
-     $$ C_{ox} = \frac{\epsilon_{ox}}{t_{ox}} $$  
+
+    $$
+    Q_i(x) = -C_{ox}\left[(V_{gs} - V(x)) - V_t\right]
+    $$
 
 ---
 
 ### Derivation of Current Equations
 
 - Gate oxide capacitance:  
-  \[
+
+  $$
   C_{ox} = \frac{\epsilon_{ox}}{t_{ox}}
-  \]  
+  $$  
+
 - Oxide permittivity:  
-  \[
+
+  $$
   \epsilon_{ox} = 3.97 \times \epsilon_0 = 3.5 \times 10^{-11} \, F/m
-  \]  
-- \(t_{ox}\): oxide thickness (constant, technology dependent).  
+  $$  
+
+- $t_{ox}$: oxide thickness (constant, technology dependent).  
 
 - **First-order analysis (from device perspective):**  
   - Two types of current exist:  
@@ -108,45 +115,54 @@ PMOS has an inverted structure similar to NMOS.
     - **Diffusion current** → due to difference in carrier concentration.  
 
 - **Drift current (Id):**  
-  \[
+
+  $$
   I_d = \text{velocity of carriers} \times \text{available charge over channel width}
-  \]  
-  \[
+  $$  
+
+  $$
   I_d = -v_n(x) \cdot Q_i(x) \cdot W
-  \]  
+  $$  
 
 - **Carrier velocity:**  
-  \[
+
+  $$
   v_n(x) = \mu_n \cdot E = \mu_n \cdot \frac{dV}{dx}
-  \]  
+  $$  
 
 - Substituting:  
-  \[
+
+  $$
   I_d = \mu_n \cdot \frac{dV}{dx} \cdot C_{ox} \cdot \left[(V_{gs} - V(x)) - V_t\right] \cdot W
-  \]  
+  $$  
 
 - Integrating over channel length L (LHS) and drain–source voltage Vds (RHS):  
-  \[
+
+  $$
   I_d = \mu_n \cdot C_{ox} \cdot \frac{W}{L} \left[(V_{gs} - V_t)V_{ds} - \frac{V_{ds}^2}{2}\right]
-  \]  
+  $$  
 
 - Simplification using process transconductance parameter:  
-  \[
-  I_d = k_n' \cdot \frac{W}{L} \left[(V_{gs} - V_t)V_{ds} - \frac{V_{ds}^2}{2}\right]
-  \]  
 
-  - \(k_n'\): process transconductance parameter (technology constant).  
-  - \(k_n = k_n' \cdot \frac{W}{L}\): gain factor.  
+  $$
+  I_d = k_n' \cdot \frac{W}{L} \left[(V_{gs} - V_t)V_{ds} - \frac{V_{ds}^2}{2}\right]
+  $$  
+
+  - $k_n'$: process transconductance parameter (technology constant).  
+  - $k_n = k_n' \cdot \frac{W}{L}$: gain factor.  
 
 - Final equation:  
-  \[
+
+  $$
   I_d = k_n \left[(V_{gs} - V_t)V_{ds} - \frac{V_{ds}^2}{2}\right]
-  \]  
+  $$  
 
 - The quadratic term is very small and can be neglected for **Vds ≤ (Vgs – Vt)**.  
 
 - Therefore, in the **linear region**:  
-  \[
+
+  $$
   I_d = k_n (V_{gs} - V_t)V_{ds}
-  \]  
+  $$  
+
   which is linear in Vds.
