@@ -366,7 +366,8 @@ setplot dc1
 .end
 
 **Lab Output:**  
-<img width="1852" height="907" alt="Screenshot from 2025-08-19 21-35-39" src="https://github.com/user-attachments/assets/6435ad7b-2400-4970-8a94-f3b16501aa0a" />
+<img width="1852" height="907" alt="Screenshot from 2025-08-19 21-35-39" src="https://github.com/user-attachments/assets/92a3d154-1147-4e71-a79f-0e4cafac9fcc" />
+<img width="1847" height="934" alt="Screenshot from 2025-08-19 21-45-58" src="https://github.com/user-attachments/assets/c64a4db0-ca8e-4cf3-bf3f-93fd69be07d3" />
 
 # Day 2 – Velocity Saturation & CMOS Inverter VTC
 
