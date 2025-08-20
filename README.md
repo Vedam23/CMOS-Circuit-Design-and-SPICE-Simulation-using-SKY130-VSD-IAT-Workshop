@@ -32,7 +32,7 @@ This repository contains my notes, lab exercises, and SPICE simulations from a 5
 
 ### MOSFET Structure - NMOS
 
-![WhatsApp Image 2025-08-20 at 4 34 07 PM](https://github.com/user-attachments/assets/03782148-a6aa-4808-8265-344ce6adbee9)
+<img src="https://github.com/user-attachments/assets/03782148-a6aa-4808-8265-344ce6adbee9" alt="Noise Margin" width="300">
 
 - **NMOS** is a 4-terminal device, built on a **p-type substrate**.  
 - Two **SiO₂ isolation regions** are used to differentiate between two transistors.  
