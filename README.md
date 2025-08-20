@@ -379,6 +379,15 @@ setplot dc1
 - \(V_n\) (m/s) = linear for ε ≤ εc
 - \(V_n\) (m/s) = constant for ε ≥ εc
 ### CMOS Inverter & Voltage Transfer Characteristic (VTC) 
+
+#### CMOS Inverter:
+
+![WhatsApp Image 2025-08-20 at 4 53 01 PM](https://github.com/user-attachments/assets/51ea1303-b2b5-4c96-820e-fb31b2a062f3)
+
+#### CMOS Inverter (V_out vs V_in plot):
+
+![WhatsApp Image 2025-08-20 at 4 58 59 PM](https://github.com/user-attachments/assets/c903eb77-f0ea-4243-96fd-5f8d066cadaf)
+
 ### Transistor as a Switch 
 - Acts as **open circuit** (infinite resistance) when |Vgs| < |Vt| → **OFF state**
 - - Acts as **closed circuit** (finite resistance) when |Vgs| > |Vt| → **ON state**
