@@ -199,7 +199,8 @@ $$
 - Channel voltage = Vgs − Vds  
 
 **Case 1: Vds < (Vgs − Vt)** → channel continuous.  
-**Case 2: Vds ≈ (Vgs − Vt)** → pinch-off starts near drain.  
+**Case 2: Vds ≈ (Vgs − Vt)** → pinch-off starts near drain. 
+![WhatsApp Image 2025-08-20 at 4 34 07 PM](https://github.com/user-attachments/assets/1e385a7f-10a7-4c25-9b50-8359bbdbd162)
 **Case 3: Vds > (Vgs − Vt)** → saturation (channel vanishes near drain).  
 
 > Pinch-off condition:  
