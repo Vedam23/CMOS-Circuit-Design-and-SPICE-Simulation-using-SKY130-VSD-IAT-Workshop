@@ -412,7 +412,7 @@ setplot dc1
 
 ## For the given Spice Netlist:
 
-![WhatsApp Image 2025-08-19 at 11 14 53 PM](https://github.com/user-attachments/assets/0713e12c-a1a7-4e7c-b5f0-8a957d0a45a8) 
+![WhatsApp Image 2025-08-20 at 5 05 28 PM](https://github.com/user-attachments/assets/2555cf58-a757-485a-941f-cd36bc47fe24)
 
 ## SPICE code is:
 
@@ -543,6 +543,68 @@ run
 - Vm ≈ 0.98V for Wp/Lp = 1.5, Vm ≈ 1.2V for Wp/Lp = 3.75.
 - At Vm, both NMOS & PMOS are ON.
 - Condition: Vgs ≈ Vds, IdsP + IdsN = 0.
+- 
+$$
+I_{dsN} = k_n \left[ \big( V_m - V_t \big) \cdot V_{dsatN} - \frac{V_{dsatN}^2}{2} \right]
+$$  
+
+$$
+I_{dsP} = k_p \left[ \big( V_m - V_{dd} - V_t \big) \cdot V_{dsatP} - \frac{V_{dsatP}^2}{2} \right]
+$$
+
+$$
+k_p \left( \left[ (V_m - V_{dd} - V_t) \cdot V_{dsatP} \right] - \frac{V_{dsatP}^2}{2} \right)
++ k_n \left( \left[ (V_m - V_t) \cdot V_{dsatN} \right] - \frac{V_{dsatN}^2}{2} \right) = 0
+$$
+
+$$
+V_m = \frac{R \cdot V_{dd}}{1 + R}
+$$  
+
+where,  
+
+$$
+R = \frac{k_p \cdot V_{dsatP}}{k_n \cdot V_{dsatN}} 
+= \frac{\left(\frac{W_P}{L_P}\right) k_p' V_{dsatP}}{\left(\frac{W_N}{L_N}\right) k_n' V_{dsatN}}
+$$
+
+$$
+k_n \cdot \left[(V_m - V_t) \cdot V_{dsatN} - \frac{V_{dsatN}^2}{2}\right] 
+= k_p \cdot \left[(-V_m + V_{dd} + V_t) \cdot V_{dsatP} - \frac{V_{dsatP}^2}{2}\right]
+$$  
+
+∴  
+$$
+k_n \cdot V_{dsatN} \cdot \left[(V_m - V_t) - \frac{V_{dsatN}}{2}\right] 
+= k_p \cdot V_{dsatP} \cdot \left[(-V_m + V_{dd} + V_t) - \frac{V_{dsatP}}{2}\right]
+$$  
+
+∴  
+$$
+\frac{k_p \cdot V_{dsatP}}{k_n \cdot V_{dsatN}} 
+= \frac{(V_m - V_t) - \frac{V_{dsatN}}{2}}{(-V_m + V_{dd} + V_t) + \frac{V_{dsatP}}{2}}
+$$  
+
+$$
+\frac{\left(\frac{W_P}{L_P}\right) k_p' \cdot V_{dsatP}}{\left(\frac{W_N}{L_N}\right) k_n' \cdot V_{dsatN}} 
+= \frac{(V_m - V_t) - \frac{V_{dsatN}}{2}}{(-V_m + V_{dd} + V_t) + \frac{V_{dsatP}}{2}}
+$$  
+
+∴  
+$$
+\frac{\left(\frac{W_P}{L_P}\right) k_n' \cdot V_{dsatN}}{\left(\frac{W_N}{L_N}\right) k_p' \cdot V_{dsatP}} 
+= \frac{(V_m - V_t) - \frac{V_{dsatN}}{2}}{(-V_m + V_{dd} + V_t) + \frac{V_{dsatP}}{2}}
+$$
+
+where
+- \(W_p, L_p\): PMOS channel width & length  
+- \(W_n, L_n\): NMOS channel width & length  
+- \(k_n'\), \(k_p'\): NMOS & PMOS process transconductance  
+- \(V_{dsatN}, V_{dsatP}\): NMOS & PMOS saturation voltages  
+- \(V_m\): Switching threshold voltage  
+- \(V_t\): Threshold voltage  
+- \(V_{dd}\): Supply voltage  
+
   
 **Observation:** 
 - Increasing Wp/Lp → rise delay decreases (faster capacitor charging due to larger PMOS).
