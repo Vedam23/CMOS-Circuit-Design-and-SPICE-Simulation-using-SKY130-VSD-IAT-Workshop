@@ -201,7 +201,7 @@ $$
 **Case 1: Vds < (Vgs − Vt)** → channel continuous.  
 **Case 2: Vds ≈ (Vgs − Vt)** → pinch-off starts near drain. 
 
-![WhatsApp Image 2025-08-20 at 4 39 17 PM](https://github.com/user-attachments/assets/8ecc8033-d824-42ca-b360-dc3111eff9b0)
+<img src="https://github.com/user-attachments/assets/8ecc8033-d824-42ca-b360-dc3111eff9b0" alt="Noise Margin" width="300">
 
 **Case 3: Vds > (Vgs − Vt)** → saturation (channel vanishes near drain).  
 
@@ -382,11 +382,11 @@ setplot dc1
 
 #### CMOS Inverter:
 
-![WhatsApp Image 2025-08-20 at 4 53 01 PM](https://github.com/user-attachments/assets/51ea1303-b2b5-4c96-820e-fb31b2a062f3)
+<img src="https://github.com/user-attachments/assets/51ea1303-b2b5-4c96-820e-fb31b2a062f3" alt="Noise Margin" width="300">
 
 #### CMOS Inverter (V_out vs V_in plot):
 
-![WhatsApp Image 2025-08-20 at 5 16 28 PM](https://github.com/user-attachments/assets/05811fcc-a599-4910-9674-8555802f0023)
+<img src="https://github.com/user-attachments/assets/05811fcc-a599-4910-9674-8555802f0023" alt="Noise Margin" width="300">
 
 where:
 1. P: Linear, N: OFF  
@@ -419,7 +419,7 @@ where:
 
 ## For the given Spice Netlist:
 
-![WhatsApp Image 2025-08-20 at 5 05 28 PM](https://github.com/user-attachments/assets/2555cf58-a757-485a-941f-cd36bc47fe24)
+<img src="https://github.com/user-attachments/assets/2555cf58-a757-485a-941f-cd36bc47fe24" alt="Noise Margin" width="300">
 
 ## SPICE code is:
 
@@ -620,8 +620,7 @@ where
 
 --- 
 ## I/O Characteristics of CMOS Inverter:
-
-![WhatsApp Image 2025-08-20 at 5 29 07 PM](https://github.com/user-attachments/assets/217814f9-bcad-4b8b-9146-6658f682c28d)
+<img src="https://github.com/user-attachments/assets/217814f9-bcad-4b8b-9146-6658f682c28d" alt="Noise Margin" width="300">
 
 - **Vil (Input Low Voltage):** Any input between 0 and V_IL (≈ Vdd/4) is logic ‘0’.
 - **Vih (Input High Voltage):** Any input between V_IH (≈ 3Vdd/4) and Vdd is logic ‘1’.
