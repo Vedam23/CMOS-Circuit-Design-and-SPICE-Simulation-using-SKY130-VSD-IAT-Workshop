@@ -627,6 +627,11 @@ where
 - **Vih (Input High Voltage):** Any input between V_IH (≈ 3Vdd/4) and Vdd is logic ‘1’.
 - **Vol (Output Low Voltage):** Any output between 0 and V_OL (< Vil) is logic ‘0’.
 - **Voh (Output High Voltage):** Any output between V_OH (> V_IH) and Vdd is logic ‘1’.
+- **NMh (Noise Margin High):** Range detected as logic '1'  
+- **NMl (Noise Margin Low):** Range detected as logic '0'  
+- **Undefined Region:** Indefinite logic level  
+- **Noise Margins:** Define tolerance to noise  
+
 
 **Lab Code for Noise Margin:**
 
