@@ -619,11 +619,14 @@ where
 # Day 4 – Noise Margins 
 
 --- 
+## I/O Characteristics of CMOS Inverter:
 
-- **Vil (Input Low Voltage):** Any input between 0 and Vil (≈ Vdd/4) is logic ‘0’.
-- **Vih (Input High Voltage):** Any input between Vih (≈ 3Vdd/4) and Vdd is logic ‘1’.
-- **Vol (Output Low Voltage):** Any output between 0 and Vol (< Vil) is logic ‘0’.
-- **Voh (Output High Voltage):** Any output between Voh (> Vih) and Vdd is logic ‘1’.
+![WhatsApp Image 2025-08-20 at 5 29 07 PM](https://github.com/user-attachments/assets/217814f9-bcad-4b8b-9146-6658f682c28d)
+
+- **Vil (Input Low Voltage):** Any input between 0 and V_IL (≈ Vdd/4) is logic ‘0’.
+- **Vih (Input High Voltage):** Any input between V_IH (≈ 3Vdd/4) and Vdd is logic ‘1’.
+- **Vol (Output Low Voltage):** Any output between 0 and V_OL (< Vil) is logic ‘0’.
+- **Voh (Output High Voltage):** Any output between V_OH (> V_IH) and Vdd is logic ‘1’.
 
 **Lab Code for Noise Margin:**
 
