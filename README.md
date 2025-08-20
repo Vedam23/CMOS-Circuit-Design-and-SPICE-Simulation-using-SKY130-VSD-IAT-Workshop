@@ -283,12 +283,32 @@ $$
 - Saturation region  
 
 ---
+Id for long channel and short channel devices
+
+$$
+I_d = k_n \left[ (V_{gt} \cdot V_{min}) - \frac{V_{min}^2}{2} \right] \cdot (1 + \lambda V_{ds})
+$$
+
+where,  
+
+$$
+V_{min} = \min(V_{gt}, V_{ds}, V_{dsat})
+$$
+
 
 ### **Velocity Saturation**
 
 - In short-channel MOSFETs, carrier velocity **saturates** at high electric fields.  
 - Drain current is no longer proportional to Vgs – instead, it **flattens out**.  
 - Important for sub-micron processes like SKY130.  
+
+$$
+V_n(m/S) =
+\begin{cases} 
+\frac{\mu_n \, \varepsilon}{1 + \frac{\varepsilon}{\varepsilon_c}} & \text{for } \varepsilon \leq \varepsilon_c \\
+V_{sat} & \text{for } \varepsilon \geq \varepsilon_c
+\end{cases}
+$$
 
 # Lab Code for graph between Ids and Vds for short channel devices:**
 
