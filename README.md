@@ -620,7 +620,7 @@ where
 
 --- 
 ## I/O Characteristics of CMOS Inverter:
-<img src="https://github.com/user-attachments/assets/217814f9-bcad-4b8b-9146-6658f682c28d" alt="Noise Margin" width="300">
+<img src="https://github.com/user-attachments/assets/217814f9-bcad-4b8b-9146-6658f682c28d" alt="Noise Margin" width="800">
 
 - **Vil (Input Low Voltage):** Any input between 0 and V_IL (≈ Vdd/4) is logic ‘0’.
 - **Vih (Input High Voltage):** Any input between V_IH (≈ 3Vdd/4) and Vdd is logic ‘1’.
