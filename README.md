@@ -386,7 +386,14 @@ setplot dc1
 
 #### CMOS Inverter (V_out vs V_in plot):
 
-![WhatsApp Image 2025-08-20 at 4 58 59 PM](https://github.com/user-attachments/assets/c903eb77-f0ea-4243-96fd-5f8d066cadaf)
+![WhatsApp Image 2025-08-20 at 5 16 28 PM](https://github.com/user-attachments/assets/05811fcc-a599-4910-9674-8555802f0023)
+
+where:
+1. P: Linear, N: OFF  
+2. P: Linear, N: Saturation  
+3. P: Saturation, N: Saturation  
+4. P: Saturation, N: Linear  
+5. P: OFF, N: Linear  
 
 ### Transistor as a Switch 
 - Acts as **open circuit** (infinite resistance) when |Vgs| < |Vt| → **OFF state**
