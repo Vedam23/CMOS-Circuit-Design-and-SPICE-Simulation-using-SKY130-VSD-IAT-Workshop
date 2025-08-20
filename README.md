@@ -816,5 +816,6 @@ Overall, the workshop strengthened practical skills in **SPICE simulations, inve
 ## 📌 References 
 - Workshop material: https://www.vlsisystemdesign.com/cmos-circuit-design-spice-simulation-using-sky130-technology/
 - https://github.com/kunalg123/sky130CircuitDesignWorkshop
+- https://github.com/VrushabhDamle/sky130CircuitDesignWorkshop/
 
 THANK YOU
