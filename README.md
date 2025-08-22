@@ -530,7 +530,7 @@ run
 - Zoom around input fall & output rise near **Vdd/2**.
 - Click output rising edge → get (x0, y0).
 - Click input falling edge at same level.
-- Delay = Δx (output – input).
+- Delay = Δx (output – input) = (2.48468-2.14414)x10^-9 = 0.34054x10^-9ns.
 
 **To Calculate falling edge delay:**
 
@@ -541,7 +541,7 @@ run
 - Zoom around input rise & output fall near **Vdd/2**.
 - Click output falling edge → get (x0, y0).
 - Click input rising edge at same level.
-- Delay = Δx (output – input).
+- Delay = Δx (output – input) = (4.33846-4.04957)x10^-9=28889x10^-9ns.
 
 **Static Behavior Evaluation - CMOS Inverter Robustness: Switching threshold** 
 - **Robustness:** Input–output curve shape stays the same for all W/L ratios.
