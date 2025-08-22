@@ -636,7 +636,7 @@ where
 
 
 **Lab Code for Noise Margin:**
-
+```spice
 *Model Description
 .param temp=27
 
@@ -666,6 +666,7 @@ display
 .endc
 
 .end
+```
 
 **Output:** 
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-38-21" src="https://github.com/user-attachments/assets/c6b16568-9041-43f8-94e2-7fd094690e1b" /> 
@@ -693,7 +694,7 @@ As technology scales from 250nm to ~20nm, supply voltage is reduced (e.g., from 
   - Performance suffers: rising/falling edges may not fully charge/discharge the load capacitance
 
 **Lab Code to calculate supply variation:**
-
+```spice
 *Model Description
 .param temp=27
 
@@ -727,6 +728,7 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
 .endc
 
 .end
+```
 
 **Output:** 
 
@@ -742,7 +744,7 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
 5. Gain: g = |Δy / Δx| = |0.849997 / -0.206742| = 0.643255
 
 **Lab Code for device variations:**
-
+```spice
 *Model Description
 .param temp=27
 
@@ -772,6 +774,7 @@ display
 .endc
 
 .end
+```
 
 **Output:** 
 
