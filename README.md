@@ -438,10 +438,6 @@ Vin  in 0 2.5
 .op
 .dc Vin 0 2.5 0.05
 
-***.include tsmc_025um_model.mod***
-.LIB "tsmc_025um_model.mod" CMOS_MODELS
-.end
-
 **Code to plot VTC (tt):**
 
 *Model Description
