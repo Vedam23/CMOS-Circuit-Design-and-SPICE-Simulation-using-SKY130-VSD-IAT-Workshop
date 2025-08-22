@@ -730,14 +730,15 @@ plot dc1.out vs in dc2.out vs in dc3.out vs in dc4.out vs in dc5.out vs in dc6.o
 
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-44-14" src="https://github.com/user-attachments/assets/f5a0d5a4-a29f-44cb-8e01-5d9057422c9a" /> 
 
-<img width="1847" height="934" alt="Screenshot from 2025-08-19 22-45-31" src="https://github.com/user-attachments/assets/ddb1c70b-7f19-4840-aed2-898ff090db8a" />
+<img width="1854" height="933" alt="Screenshot from 2025-08-22 18-39-24" src="https://github.com/user-attachments/assets/5d3f76c5-a285-4b05-b5d0-0f90cbce1b8c" />
+
 
 # CMOS Inverter Gain Calculation 
 1. Select the curve for which gain is to be calculated (e.g., Vdd = 1.8V).
-2. Click near the top of the curve where slope changes → x0 = 0.78764, y0 = 1.68333
-3. Click near the bottom of the curve where slope changes → x1 = 0.994382, y1 = 0.833333
-4. Calculate differences: - Δy = y0 - y1 = 0.849997 - Δx = x0 - x1 = -0.206742
-5. Gain: g = |Δy / Δx| = |0.849997 / -0.206742| = 0.643255
+2. Click near the top of the curve where slope changes → x0 = 0.765169, y0 = 1.71905
+3. Click near the bottom of the curve where slope changes → x1 = 1.01685, y1 = 0.0666667
+4. Calculate differences: - Δy = y0 - y1 = 1.6523833 ; and Δx = x0 - x1 = -0.251681
+6. Gain: g = |Δy / Δx| = |1.6523833 / -0.251681| = 6.565387
 
 **Lab Code for device variations:**
 ```spice
