@@ -412,6 +412,39 @@ where:
 - Current flows from Vdd to Vout → **Vout = Vdd**
  
 ---
+#### CMOS Inverter Static and Dynamic Analysis
+**DC Analysis:**
+```spice
+* VTC Simulation
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
+Cload out 0 50fF
+Vdd vdd 0 1.8V
+Vin in 0 1.8V
+
+.dc Vin 0 1.8 0.01
+```
+
+<img width="1840" height="932" alt="Screenshot from 2025-08-22 12-54-44" src="https://github.com/user-attachments/assets/19f77c6b-eac8-4604-9344-540d35d26ef7" />
+
+
+**Transient Analysis**
+```spice
+* Transient Analysis
+.lib "sky130_fd_pr/models/sky130.lib.spice" tt
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
+XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
+Cload out 0 50fF
+Vdd vdd 0 1.8V
+Vin in 0 PULSE(0V 1.8V 0 0.1ns 0.1ns 2ns 4ns)
+
+.tran 1n 10n
+```
+
+
 
 # Day 3 – Switching Threshold & Transistor Sizing
 
@@ -422,7 +455,7 @@ where:
 <img src="https://github.com/user-attachments/assets/2555cf58-a757-485a-941f-cd36bc47fe24" alt="Noise Margin" width="300">
 
 ## SPICE code is:
-
+```spice
 ***MODEL Description***
 ***NETLIST Description***
 M1 out in vdd vdd pmos W=0.375u L=0.25u
@@ -472,6 +505,7 @@ display
 .endc
 
 .end
+```
 
 **Output:** 
 <img width="1847" height="934" alt="Screenshot from 2025-08-19 22-20-23" src="https://github.com/user-attachments/assets/99f17088-72f2-49e1-a6a8-c0cffc3eac80" /> 
@@ -487,7 +521,7 @@ To find the switching threshold (Vm):
 - At threshold, **x0 ≈ y0 = Vm**.
 
 **Code for Transient Analysis:**
-
+```spice
 *Model Description
 .param temp=27
 
@@ -513,6 +547,7 @@ run
 .endc
 
 .end
+```
 
 **Output:** 
 
