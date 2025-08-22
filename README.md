@@ -412,38 +412,6 @@ where:
 - Current flows from Vdd to Vout → **Vout = Vdd**
  
 ---
-#### CMOS Inverter Static and Dynamic Analysis
-**DC Analysis:**
-```spice
-* VTC Simulation
-.lib "sky130_fd_pr/models/sky130.lib.spice" tt
-
-XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
-XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
-Cload out 0 50fF
-Vdd vdd 0 1.8V
-Vin in 0 1.8V
-
-.dc Vin 0 1.8 0.01
-```
-
-<img width="1840" height="932" alt="Screenshot from 2025-08-22 12-54-44" src="https://github.com/user-attachments/assets/19f77c6b-eac8-4604-9344-540d35d26ef7" />
-
-
-**Transient Analysis**
-```spice
-* Transient Analysis
-.lib "sky130_fd_pr/models/sky130.lib.spice" tt
-
-XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
-XM2 out in 0 0 sky130_fd_pr__nfet_01v8 w=0.36 l=0.15
-Cload out 0 50fF
-Vdd vdd 0 1.8V
-Vin in 0 PULSE(0V 1.8V 0 0.1ns 0.1ns 2ns 4ns)
-
-.tran 1n 10n
-```
-
 
 
 # Day 3 – Switching Threshold & Transistor Sizing
@@ -707,7 +675,9 @@ display
 1. Open NGSpice plot.
 2. Select top point where slope ≈ -1 → x0 = 0.766667, y0 = 1.71351
 3. Select bottom point where slope ≈ -1 → x1 = 0.977333, y1 = 0.110811
-4. Calculate: - **NMh = Voh - Vih = y0 - x1 = 1.73571 - 0.971111 = 0.764599** - **NMl = Vil - Vol = x0 - y1 = 0.751111 - 0.12619 = 0.624921**
+4. Calculate:
+- **NMh = Voh - Vih = y0 - x1 = 1.73571 - 0.971111 = 0.764599**
+- **NMl = Vil - Vol = x0 - y1 = 0.751111 - 0.12619 = 0.624921**
 
 --- 
 
